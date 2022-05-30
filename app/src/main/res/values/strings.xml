@@ -8,4 +8,6 @@
     <string name="bt_selections">Подборки</string>
     <string name="bt_settings">Настройки</string>
     <string name="page_title">Search it</string>
+    <string name="bt_dark_mode">Темный режим</string>
+    <string name="bt_light_mode">Светлый режим</string>
 </resources>

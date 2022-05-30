@@ -4,28 +4,43 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
+import com.example.myhomework.databinding.ActivityMainBinding
 import com.google.android.material.appbar.AppBarLayout
 
 class MainActivity : AppCompatActivity() {
+    lateinit var bindingClass : ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        bindingClass = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(bindingClass.root)
 
         initNavigation()
     }
 
     private fun initNavigation() {
-        topAppBar.setOnMenuItemClickListener {
+        bindingClass.topAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.settings -> {
                     Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+                R.id.dark_mode -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    true
+                }
+
+                R.id.light_mode -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     true
                 }
                 else -> false
             }
         }
 
-        bottom_navigation.setOnNavigationItemSelectedListener {
+        bindingClass.bottomNavigation.setOnNavigationItemSelectedListener {
 
             when (it.itemId) {
                 R.id.favorites -> {
@@ -44,5 +59,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 }
